@@ -4,6 +4,8 @@ Presentation artwork for QuixDevs ProductClock, using the maintainer-supplied [Q
 
 The supplied transparent PNG is preserved byte-for-byte at its original 164 × 45 pixels. Its colors and proportions are unchanged. SVG compositions embed that exact image, so exports do not depend on a local Desktop path or an external image URL. The original ProductClock clock mark remains the product icon.
 
+The social preview and WordPress.org banners include the creator credit **Created by M A Hasan**.
+
 ## Editable sources and exports
 
 | Source | Export |
