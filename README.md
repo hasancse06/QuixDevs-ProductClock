@@ -1,5 +1,7 @@
 # QuixDevs ProductClock
 
+![QuixDevs ProductClock branding with the supplied QuixDevs logo, product clock mark and Auto Publish & Expire for WooCommerce tagline](docs/branding/github-social-preview.png)
+
 **Auto Publish & Expire for WooCommerce**  
 Schedule. Publish. Expire.
 
@@ -39,43 +41,31 @@ Expiration means **returning a product to draft**. The product is retained, and 
 
 ## Screenshots
 
-The scheduling interface is shown above. Expand the other views below; click an image to inspect its original size. All five show the working plugin with synthetic products. [Capture details](docs/screenshots/README.md).
+The scheduling interface is shown above. The remaining four screenshots are displayed below. All five show the working plugin with synthetic products. [Capture details](docs/screenshots/README.md).
 
-<details>
-<summary>2. Dashboard — statistics, upcoming transitions and scheduler health</summary>
+### 2. Dashboard — statistics, upcoming transitions and scheduler health
 
 ![ProductClock dashboard showing six managed demo products, upcoming publication and expiration actions, and Action Scheduler health](docs/screenshots/02-dashboard.png)
 
 *See pending and completed schedules alongside queue health and cron information.*
 
-</details>
-
-<details>
-<summary>3. Scheduled products — dates, modes and schedule states</summary>
+### 3. Scheduled products — dates, modes and schedule states
 
 ![Scheduled products table with pending publication, pending expiration, completed, expired and suspended demo schedules](docs/screenshots/03-scheduled-products.png)
 
 *Filter schedules by state and open a product’s scheduling controls directly.*
 
-</details>
-
-<details>
-<summary>4. Settings — global switches, timezone and data retention</summary>
+### 4. Settings — global switches, timezone and data retention
 
 ![ProductClock settings showing publishing, expiration and logging switches, uninstall data removal disabled, and site timezone selected](docs/screenshots/04-settings.png)
 
 *Pause automation, choose the default timezone for new schedules and control uninstall retention.*
 
-</details>
-
-<details>
-<summary>5. Activity — successful transitions, recovery and manual overrides</summary>
+### 5. Activity — successful transitions, recovery and manual overrides
 
 ![ProductClock activity table with genuine product_published and product_expired success records, reconciliation recovery and a manual override](docs/screenshots/05-activity.png)
 
 *Compare scheduled and actual execution times. Scheduler diagnostics and recovery controls also appear in Dashboard and Tools.*
-
-</details>
 
 ## Installation
 

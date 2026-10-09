@@ -21,7 +21,7 @@ See [the testing guide](testing.md) for recorded checks and remaining limits, [s
 - [ ] Review the source tree for secrets and local configuration, including ignored files before any forced add.
 - [ ] Upload the **contents** of the prepared folder to the repository root, including hidden `.github/` and `.gitignore`. Do not upload the enclosing `quixdevs-productclock-github` folder or unrelated workspace files. Keep `vendor`, test databases and local configuration out of source control.
 - [ ] Use [github-listing.md](github-listing.md) for About description, thirteen topics and social preview upload. Leave Website blank until a real destination exists.
-- [ ] Confirm README relative links, screenshot rendering, collapsed gallery and mobile display in GitHub's preview.
+- [ ] Confirm README relative links, screenshot rendering, visible screenshot gallery and mobile display in GitHub's preview.
 - [ ] Run the configured GitHub CI matrix; expand compatibility checks against then-current WordPress/WooCommerce releases. Do not claim a green CI badge before it runs.
 - [ ] Complete [the existing release checklist](release-checklist.md), including staging, browser/accessibility and large-catalog QA.
 
