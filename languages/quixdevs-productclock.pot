@@ -1,0 +1,523 @@
+# Copyright (C) 2026 QuixDevs
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: QuixDevs ProductClock – Product Scheduler for WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To:\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-09T16:02:56+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: quixdevs-productclock\n"
+
+#. Plugin Name of the plugin
+#: quixdevs-productclock.php
+msgid "QuixDevs ProductClock – Product Scheduler for WooCommerce"
+msgstr ""
+
+#. Description of the plugin
+#: quixdevs-productclock.php
+msgid "Automatically publish and expire WooCommerce products at scheduled dates and times."
+msgstr ""
+
+#. Author of the plugin
+#: quixdevs-productclock.php
+msgid "QuixDevs"
+msgstr ""
+
+#: includes/Activator.php:13
+msgid "Activate ProductClock separately on each store; network activation is not supported."
+msgstr ""
+
+#: includes/Activator.php:16
+msgid "Install and activate WooCommerce 10.0 or later first."
+msgstr ""
+
+#: includes/Admin/Admin_Actions.php:26
+msgid "You are not authorized to run this ProductClock tool."
+msgstr ""
+
+#: includes/Admin/Admin_Actions.php:30
+msgid "Choose a tool and confirm the operation."
+msgstr ""
+
+#: includes/Admin/Admin_Actions.php:33
+msgid "Action Scheduler is unavailable."
+msgstr ""
+
+#. translators: %d: number of inspected due actions.
+#: includes/Admin/Admin_Actions.php:61
+#, php-format
+msgid "Inspected %d due actions. Completed transitions are safe to retry; remaining work stays in the queue."
+msgstr ""
+
+#. translators: %d: number of inspected due actions.
+#: includes/Admin/Admin_Actions.php:61
+msgid "Recovery queued. Batches will repair missing actions without changing suspended or completed schedules."
+msgstr ""
+
+#: includes/Admin/Admin_Actions.php:63
+msgid "The tool encountered a failure. Review WooCommerce logs and scheduler diagnostics."
+msgstr ""
+
+#: includes/Admin/Dashboard.php:32
+msgid "Scheduler Health"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:34
+msgid "Engine"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:34
+msgid "WooCommerce Action Scheduler ready"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:34
+msgid "Unavailable"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:35
+msgid "Pending actions"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:36
+msgid "Failed actions"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:37
+msgid "Last reconciliation"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:38
+msgid "Next reconciliation"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:39
+msgid "WP-Cron"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:39
+msgid "Traffic-driven cron disabled; verify your server cron."
+msgstr ""
+
+#: includes/Admin/Dashboard.php:39
+msgid "Traffic-driven cron enabled; execution may be delayed."
+msgstr ""
+
+#: includes/Admin/Dashboard.php:44
+msgid "Action Scheduler executes at or after the scheduled time, when a worker runs. ProductClock does not guarantee exact-second execution."
+msgstr ""
+
+#: includes/Admin/Dashboard.php:47
+msgid "Reconciliation has not run for more than two hours. Check server cron and WooCommerce Scheduled Actions."
+msgstr ""
+
+#: includes/Admin/Dashboard.php:49
+msgid "Inspect WooCommerce Scheduled Actions"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:54
+msgid "Total managed products"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:55
+msgid "Pending publications"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:56
+msgid "Pending expirations"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:57
+msgid "Completed schedules"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:58
+msgid "Failed schedules"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:61
+msgid "Overdue schedules"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:62
+msgid "Schedule Overview"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:66
+msgid "Upcoming Transitions"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:67
+#: includes/Admin/Schedules_List.php:36
+msgid "Product"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:67
+#: includes/Admin/Schedules_List.php:36
+msgid "Action"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:67
+#: includes/Admin/Schedules_List.php:36
+msgid "Scheduled Time"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:67
+msgid "Current Status"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:74
+#: includes/Admin/Labels.php:26
+msgid "Publish"
+msgstr ""
+
+#: includes/Admin/Dashboard.php:74
+#: includes/Admin/Labels.php:26
+msgid "Expire"
+msgstr ""
+
+#: includes/Admin/Labels.php:11
+msgid "Disabled"
+msgstr ""
+
+#: includes/Admin/Labels.php:12
+msgid "Pending Publication"
+msgstr ""
+
+#: includes/Admin/Labels.php:13
+msgid "Pending Expiration"
+msgstr ""
+
+#: includes/Admin/Labels.php:14
+msgid "Expired"
+msgstr ""
+
+#: includes/Admin/Labels.php:15
+msgid "Completed"
+msgstr ""
+
+#: includes/Admin/Labels.php:16
+msgid "Suspended"
+msgstr ""
+
+#: includes/Admin/Labels.php:17
+msgid "Error"
+msgstr ""
+
+#: includes/Admin/Labels.php:25
+msgid "No pending action"
+msgstr ""
+
+#. translators: 1: action name, 2: scheduled date with timezone.
+#: includes/Admin/Labels.php:28
+#, php-format
+msgid "%1$s — %2$s"
+msgstr ""
+
+#: includes/Admin/Labels.php:31
+#: includes/Admin/Product_Fields.php:46
+msgid "Publish Only"
+msgstr ""
+
+#: includes/Admin/Labels.php:31
+#: includes/Admin/Product_Fields.php:47
+msgid "Expire Only"
+msgstr ""
+
+#: includes/Admin/Labels.php:31
+#: includes/Admin/Product_Fields.php:48
+msgid "Publish & Expire"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:26
+#: includes/Admin/Product_Fields.php:96
+#: includes/Admin/Settings_Page.php:25
+msgid "ProductClock"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:35
+msgid "ProductClock Scheduling"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:43
+msgid "Enable Automatic Scheduling"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:44
+msgid "Scheduling Mode"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:54
+msgid "Publish Date & Time"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:55
+msgid "Expiration Date & Time"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:59
+msgid "Dates retain their absolute execution time when the site timezone changes. Daylight saving gaps and repeated times are rejected."
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:60
+msgid "Future publication requires a draft product. Move it to draft yourself first. Saving a past date queues it for the next scheduler run. Expiration wins if both dates have passed."
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:62
+msgid "Current Schedule Status:"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:62
+msgid "Next Scheduled Action:"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:62
+msgid "Last Execution:"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:62
+msgid "Not executed yet"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:67
+msgid "Resume this schedule using the current product status. Completed dates remain completed."
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:83
+msgid "ProductClock could not save or queue the schedule. Review scheduler health and retry."
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:92
+#: includes/Support/Validator.php:21
+msgid "Expiration must be later than publication."
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:111
+msgid "Publish:"
+msgstr ""
+
+#: includes/Admin/Product_Fields.php:112
+msgid "Expire:"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:29
+#: includes/Admin/Schedules_List.php:36
+msgid "Schedule Status"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:29
+msgid "All states"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:33
+msgid "Product order"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:33
+msgid "Oldest first"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:33
+msgid "Newest first"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:34
+msgid "Filter"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:36
+msgid "Actual Time"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:36
+msgid "Result"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:36
+msgid "Product Status"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:36
+msgid "Mode"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:36
+msgid "Publish Date"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:36
+msgid "Expiry Date"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:36
+msgid "Next Action"
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:55
+msgid "No schedules found."
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:69
+msgid "Showing up to 20 recent events per product, retained for 30 days. Full native logs follow WooCommerce log retention settings."
+msgstr ""
+
+#: includes/Admin/Schedules_List.php:69
+msgid "WooCommerce logs"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:43
+msgid "You cannot access ProductClock."
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:46
+msgid "Dashboard"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:47
+msgid "Schedules"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:48
+msgid "Settings"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:49
+msgid "Activity"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:50
+msgid "Tools"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:56
+msgid "QuixDevs ProductClock"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:56
+msgid "Schedule. Publish. Expire."
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:58
+msgid "ProductClock is globally paused. Product schedules are retained."
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:65
+msgid "ProductClock sections"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:91
+msgid "A site administrator must change these settings."
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:99
+msgid "Enable ProductClock globally"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:100
+msgid "Enable scheduled publishing"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:101
+msgid "Enable scheduled expiration"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:102
+msgid "Enable activity logging"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:103
+msgid "Delete ProductClock data on uninstall"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:108
+msgid "Timezone for new schedules"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:108
+msgid "WordPress site timezone"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:108
+msgid "Existing schedules keep their saved timezone and UTC instants. Use a named site timezone to apply daylight saving rules. Paused transitions recover through reconciliation after re-enabling."
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:114
+msgid "Recovery Tools"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:117
+msgid "Run due ProductClock tasks (up to 25)"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:118
+msgid "Reconcile pending schedules"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:119
+msgid "Repair missing scheduled actions"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:123
+msgid "I understand that this operation may process due transitions for multiple products."
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:128
+msgid "Server Cron"
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:128
+msgid "On your server, run WP-CLI every minute using the PHP version for your site. Replace the example path. Disable traffic-driven WP-Cron only after verifying server cron works."
+msgstr ""
+
+#: includes/Admin/Settings_Page.php:128
+msgid "Diagnostics are shown above. ProductClock stores no customer information and sends no telemetry."
+msgstr ""
+
+#: includes/Dependencies.php:17
+msgid "ProductClock needs WooCommerce 10.0 or later and its initialized Action Scheduler. Scheduling is unavailable until these dependencies are ready."
+msgstr ""
+
+#: includes/Scheduler/Schedule_Manager.php:62
+msgid "Expiration-only schedules require a published product."
+msgstr ""
+
+#: includes/Scheduler/Schedule_Manager.php:70
+msgid "Scheduling can only be armed on draft or published products."
+msgstr ""
+
+#: includes/Scheduler/Schedule_Manager.php:73
+msgid "To schedule a future publication, first move this product to draft yourself. ProductClock never drafts it immediately."
+msgstr ""
+
+#: includes/Scheduler/Status_Guard.php:28
+msgid "ProductClock is processing this product. Wait a moment and retry saving."
+msgstr ""
+
+#: includes/Support/Date_Time.php:19
+msgid "Use a complete date and time."
+msgstr ""
+
+#: includes/Support/Date_Time.php:27
+msgid "This date is invalid or falls in a daylight saving gap."
+msgstr ""
+
+#: includes/Support/Date_Time.php:43
+msgid "This time is ambiguous during a daylight saving change. Choose a different time or use UTC."
+msgstr ""
+
+#: includes/Support/Date_Time.php:46
+msgid "Choose a date after January 1, 1970."
+msgstr ""
+
+#: includes/Support/Validator.php:13
+msgid "Only simple products and variable parent products are supported."
+msgstr ""
+
+#: includes/Support/Validator.php:18
+msgid "Choose a scheduling mode and supply its required dates."
+msgstr ""

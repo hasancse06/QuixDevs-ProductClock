@@ -1,0 +1,11 @@
+.qpc-fields label[for] { display: inline-block; min-width: 13em; }
+.qpc-fields input[type="datetime-local"] { max-width: 100%; }
+.qpc-validation { color: #b32d2e; }
+@media (max-width: 600px) { .qpc-fields label[for] { display: block; margin-bottom: 0.5em; } }
+#quixdevs-productclock .qpc-fields { padding: 0 12px 12px; }
+#quixdevs-productclock .qpc-fields label { float: none; width: auto; margin: 0; }
+#quixdevs-productclock .qpc-fields select,
+#quixdevs-productclock .qpc-fields input { float: none; }
+#quixdevs-productclock .qpc-fields [hidden] { display: none !important; }
+.qpc-table { overflow-x: auto; }
+.qpc-table table { min-width: 800px; }

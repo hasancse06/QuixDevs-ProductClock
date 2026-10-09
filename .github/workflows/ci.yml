@@ -1,0 +1,65 @@
+name: ProductClock checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  standards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist
+      - run: find includes -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: php -l quixdevs-productclock.php && php -l uninstall.php
+      - run: composer lint
+  integration:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.2', '8.4']
+        wordpress: ['6.8.3']
+        woocommerce: ['10.0.4']
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: qpc_test_password
+        ports: ['3306:3306']
+        options: --health-cmd="mysqladmin ping -h localhost -pqpc_test_password" --health-interval=10s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, mbstring
+          tools: composer
+          coverage: none
+      - run: sudo apt-get update && sudo apt-get install -y default-mysql-client unzip
+      - run: composer install --no-interaction --prefer-dist
+      - run: bash tools/install-test-env.sh
+        env:
+          QPC_ALLOW_TEST_DB_RESET: '1'
+          QPC_TEST_DB_PASSWORD: qpc_test_password
+          QPC_WP_VERSION: ${{ matrix.wordpress }}
+          QPC_WC_VERSION: ${{ matrix.woocommerce }}
+      - run: composer test
+        env:
+          WP_TESTS_DIR: /tmp/qpc-tests-env/wordpress-develop-6.8.3/tests/phpunit
+  plugin-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - run: python3 tools/build-release.py
+      - run: mkdir .release && unzip ../quixdevs-productclock.zip -d .release
+      - uses: WordPress/plugin-check-action@v1
+        with:
+          build-dir: .release/quixdevs-productclock
