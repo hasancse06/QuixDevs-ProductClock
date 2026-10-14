@@ -45,6 +45,6 @@ Maintained by QuixDevs. **GPL-2.0-or-later**.
 
 ## Maintainer package note — do not paste into release copy
 
-Build the final archive from the reviewed repository using `python3 tools/build-release.py`. Run extracted-package Plugin Check and ZIP upload/activation checks, record its hash, and attach that exact file to the release. Release ZIPs are generated artifacts and are not committed to this repository. Keep branding, screenshots and development files outside the runtime ZIP. Update verification claims only when new checks actually ran; preserve outstanding limits.
+Build the final archive from the reviewed repository using `python3 tools/build-release.py`. Output is `dist/quixdevs-productclock.zip`, with a checksum and manifest beside it. The [draft-release workflow](release-distribution.md#draft-release-workflow) reuses the existing CI before attaching those files to a draft. Run extracted-package Plugin Check and ZIP upload/activation checks, record its hash, and attach that exact file to the release. Release ZIPs are generated artifacts and are not committed to this repository. Keep branding, screenshots and development files outside the runtime ZIP. Update verification claims only when new checks actually ran; preserve outstanding limits.
 
 Local handoff links: [README](../README.md) · [Testing](testing.md) · [Changelog](../CHANGELOG.md) · [License](../LICENSE) · [Publishing checklist](github-publishing-checklist.md).

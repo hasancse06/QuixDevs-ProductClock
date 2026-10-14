@@ -1,5 +1,15 @@
 name: ProductClock checks
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      ref:
+        description: Exact commit to validate when called by release preparation
+        required: false
+        type: string
+        default: ''
 permissions:
   contents: read
 jobs:
@@ -7,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+          persist-credentials: false
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
@@ -16,6 +29,7 @@ jobs:
       - run: find includes -name '*.php' -print0 | xargs -0 -n1 php -l
       - run: php -l quixdevs-productclock.php && php -l uninstall.php
       - run: composer lint
+      - run: python3 -m unittest discover -s tests/release -v
   integration:
     runs-on: ubuntu-latest
     strategy:
@@ -33,6 +47,9 @@ jobs:
         options: --health-cmd="mysqladmin ping -h localhost -pqpc_test_password" --health-interval=10s --health-timeout=5s --health-retries=10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+          persist-credentials: false
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -54,12 +71,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+          persist-credentials: false
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
           coverage: none
       - run: python3 tools/build-release.py
-      - run: mkdir .release && unzip ../quixdevs-productclock.zip -d .release
+      - run: python3 tools/verify-release.py
+      - run: mkdir .release && unzip dist/quixdevs-productclock.zip -d .release
       - uses: WordPress/plugin-check-action@v1
         with:
           build-dir: .release/quixdevs-productclock

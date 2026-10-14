@@ -25,7 +25,7 @@
 
 ## Packaging
 
-Run `python3 tools/build-release.py`. The archive has a single `quixdevs-productclock/` root and includes bootstrap, uninstall, classes, assets, languages, readme, license and changelog. Tests, vendor dependencies, docs/screenshots, CI, local config, caches and tools are excluded. The script verifies CRCs and the distribution allowlist and reports SHA-256.
+Run `python3 tools/build-release.py`. The archive has a single `quixdevs-productclock/` root and includes bootstrap, uninstall, classes, assets, languages, readme, license and changelog. Tests, vendor dependencies, docs/screenshots, CI, local config, caches and tools are excluded. The script verifies CRCs, the distribution allowlist, runtime dependencies and source versions, then writes `dist/quixdevs-productclock.zip`, its `.sha256` sidecar and `dist/release-manifest.json`. Run `python3 tools/verify-release.py` for an independent recheck. [Distribution guide](release-distribution.md).
 
 ## Presentation assets
 

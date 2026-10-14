@@ -12,6 +12,14 @@ A free, open-source **WooCommerce product scheduler** for product launches, seas
 - Track upcoming actions and activity in a native WooCommerce dashboard.
 - Run locally on your store, without an external account or subscription.
 
+## Download & Install
+
+Download **`quixdevs-productclock.zip`** from **[GitHub → Releases](https://github.com/hasancse06/QuixDevs-ProductClock/releases) → choose a published version → Assets**.
+
+With WooCommerce installed and active, open **WordPress Admin → Plugins → Add Plugin → Upload Plugin**, choose that ZIP, select **Install Now**, then **Activate Plugin**. No Composer or command-line tools are needed on your store.
+
+**Do not install GitHub’s automatic “Source code (zip)” download.** It is a development checkout containing tests, documentation and other repository files. Use the separately attached `quixdevs-productclock.zip` asset. If Releases is empty, a public installable package is not available yet; maintainers can [build and verify it locally](docs/release-distribution.md).
+
 **[Install the release ZIP](#installation)** · [Quick start](#quick-start) · [Requirements](#requirements) · [Developer docs](#developer-documentation)
 
 ![WooCommerce Product Data panel with ProductClock enabled, Publish & Expire mode, both dates, Asia/Dhaka timezone and pending publication status](docs/screenshots/01-product-scheduling.png)
@@ -71,7 +79,7 @@ The scheduling interface is shown above. The remaining four screenshots are disp
 
 **WooCommerce must already be installed and active. No Composer or command-line tools are needed on your store.**
 
-When the public release is published, open this repository’s **Releases** section, choose **QuixDevs ProductClock v1.0.0 – WooCommerce Product Scheduler**, and download **`quixdevs-productclock.zip`** under Assets. Use that installable asset rather than GitHub’s automatically generated source archives.
+Open [GitHub Releases](https://github.com/hasancse06/QuixDevs-ProductClock/releases), choose a published version, and download **`quixdevs-productclock.zip`** under **Assets**. Use the attached installable package rather than GitHub’s automatic Source code ZIP.
 
 If no release is listed yet, an installable public ZIP has not been published. Maintainers can create it with the local build command below and follow the [publishing checklist](docs/github-publishing-checklist.md).
 
@@ -79,7 +87,7 @@ If no release is listed yet, an installable public ZIP has not been published. M
 2. Choose `quixdevs-productclock.zip`, select **Install Now**, then **Activate Plugin**.
 3. Open **WooCommerce → ProductClock** and check Scheduler Health.
 
-For a local development build, run `python3 tools/build-release.py` from this directory. It creates the installable ZIP beside the source directory, without requiring Composer. This is a maintainer step, not a store-owner installation requirement.
+For a local development build, run `python3 tools/build-release.py` from this directory. It creates `dist/quixdevs-productclock.zip`, a checksum and a package manifest without requiring Composer. This is a maintainer step, not a store-owner installation requirement.
 
 ## Quick start
 
@@ -173,7 +181,7 @@ No. ProductClock is a local WordPress product scheduler with no external account
 - [Tests, recorded verification and compatibility limits](docs/testing.md)
 - [Store operation guide](docs/store-guide.md) and [changelog](CHANGELOG.md)
 - [GitHub listing](docs/github-listing.md), [release notes](docs/github-release-notes.md) and [publishing checklist](docs/github-publishing-checklist.md)
-- [Release checklist](docs/release-checklist.md), [branding sources](docs/branding/README.md) and [WordPress.org asset handoff](wordpress-org-assets/README.md)
+- [Release distribution and draft workflow](docs/release-distribution.md), [release checklist](docs/release-checklist.md), [branding sources](docs/branding/README.md) and [WordPress.org asset handoff](wordpress-org-assets/README.md)
 
 ## Contributing
 

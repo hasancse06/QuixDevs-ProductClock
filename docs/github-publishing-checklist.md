@@ -33,12 +33,12 @@ When preparing the final public package, explicitly run from the repository root
 
 ```sh
 python3 tools/build-release.py
-unzip -l ../quixdevs-productclock.zip
+unzip -l dist/quixdevs-productclock.zip
 ```
 
 The existing builder includes only bootstrap/uninstall, `includes`, runtime `assets`, `languages`, `readme.txt`, `LICENSE` and `CHANGELOG.md`. Presentation assets are in `docs/branding`, `docs/screenshots` and `wordpress-org-assets`, which the allowlist excludes. Do not copy them into runtime `assets`.
 
-- [ ] Rebuild after the documentation review; record the new hash and file list.
+- [ ] Run `python3 tools/build-release.py --tag v1.0.0` and `python3 tools/verify-release.py --tag v1.0.0`; record the new hash and file list.
 - [ ] Extract into a clean disposable directory and run runtime-enabled Plugin Check; see [testing instructions](testing.md).
 - [ ] Upload and activate that exact ZIP on a disposable or staging store with WooCommerce active.
 - [ ] Confirm one plugin root, no vendor/tests/CI/local configuration/presentation images, and no functional differences.
@@ -47,7 +47,7 @@ The existing builder includes only bootstrap/uninstall, `includes`, runtime `ass
 ## Publish only when authorized
 
 - [ ] Confirm the commit intended for release and tag it `v1.0.0` only after review.
-- [ ] Create title **QuixDevs ProductClock v1.0.0 – WooCommerce Product Scheduler** using [the prepared release notes](github-release-notes.md).
+- [ ] After the release workflow has been committed, push an approved existing version tag or manually dispatch **Prepare draft release** for that tag. Its checks gate draft creation; inspect the draft and publish manually only after review. See [release distribution](release-distribution.md).
 - [ ] Attach the reviewed `quixdevs-productclock.zip` as an asset; verify its downloaded checksum matches the uploaded package.
 - [ ] Replace future download instructions with the actual release URL after it exists. Keep fork-friendly relative documentation and screenshot paths.
 - [ ] Check the release preview's documentation links; use confirmed repository URLs if relative release-body links resolve incorrectly.
@@ -58,6 +58,6 @@ The existing builder includes only bootstrap/uninstall, `includes`, runtime `ass
 - [ ] Confirm the publishing account, contributor username, product name/trademark availability and directory requirements. Acceptance is the directory team's decision.
 - [ ] Recheck compatibility and Plugin Check before submission; retain truthful Tested up to information.
 - [ ] Submit the reviewed runtime ZIP through the official directory workflow only when authorized.
-- [ ] After acceptance and SVN access, copy the contents of `wordpress-org-assets/` **except its README** into the SVN repository's top-level `assets/`, alongside `trunk/` and `tags/`.
+- [ ] Run `python3 tools/export-wordpress-assets.py`. After acceptance and SVN access, copy the nine PNGs in `dist/wordpress-org-assets/` into the SVN repository's top-level `assets/`, alongside `trunk/` and `tags/`.
 - [ ] Confirm screenshot 1–5 captions match the real images and review small/retina icons and banners. Assets are shared across versions and may be cached.
 - [ ] Keep source artwork, publishing guides and presentation images out of the runtime archive. See [the asset handoff](../wordpress-org-assets/README.md).

@@ -63,3 +63,6 @@ Desktop.ini
 
 # Intentionally tracked: source, tests, .github, composer.lock,
 # documentation, screenshots, branding SVG/PNG and WordPress.org assets.
+
+# Generated WordPress.org screenshot copies; keep docs/screenshots as the source.
+/wordpress-org-assets/screenshot-*.png

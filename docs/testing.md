@@ -50,13 +50,16 @@ export WP_TESTS_DIR=/tmp/qpc-tests-env/wordpress-develop-6.8.3/tests/phpunit
 composer test
 ```
 
+The test bootstrap refreshes cached WordPress role objects after WooCommerce grants its capabilities, so permission assertions start with the correct roles on a fresh database.
+
 The helper requires a `qpc_` database prefix and explicit reset opt-in. For a Unix socket or a custom installation, provide a standard `wp-tests-config.php` to the official framework instead. Composer's platform baseline is PHP 7.4 so the committed lock file can install across the planned CI matrix.
 
 Build and inspect the release:
 
 ```sh
 python3 tools/build-release.py
-unzip -l ../quixdevs-productclock.zip
+python3 tools/verify-release.py
+unzip -l dist/quixdevs-productclock.zip
 ```
 
 On a disposable installed WordPress site with Plugin Check:
@@ -72,3 +75,9 @@ PHP syntax checks include bootstrap, uninstall, production classes and tests. PH
 Local verification covers PHP 8.4.13 / WordPress 6.8.3 / WooCommerce 10.0.4 only. Intended minimums are PHP 7.4 / WordPress 6.8 / WooCommerce 10.0. CI is configured for PHP 7.4, 8.2 and 8.4 against WordPress 6.8.3 and WooCommerce 10.0.4. These CI jobs have not been run on GitHub in this session. Expand and run the matrix against the then-current supported releases before public distribution; do not raise Tested up to without evidence.
 
 MariaDB, persistent object-cache configurations, database proxies/reconnect behavior, multisite lifecycle and large-store stress benchmarks were not verified locally. Connection-scoped locks require a stable writer connection, as used by ordinary WordPress MySQL installations. The classic editor was checked in the available in-app browser, including its narrow responsive viewport; other browser/assistive-technology combinations need release QA. The beta product editor is outside scope.
+
+## Release tooling tests
+
+Run `python3 -m unittest discover -s tests/release -v` without WordPress or a database. These tests exercise deterministic ZIP output, developer-file exclusions, missing runtime classes/assets, dependency/tag mismatches, symlinks, ZIP tampering/traversal and generated WordPress.org assets. They run alongside the existing CI suite.
+
+The release workflow reuses this CI workflow at the exact validated tag commit, including the PHP matrix and runtime-enabled Plugin Check. It scans Git history, current source and the extracted runtime package with pinned Gitleaks before preparing a draft. See [release distribution](release-distribution.md) for actual local results and workflow limits.

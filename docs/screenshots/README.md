@@ -16,7 +16,7 @@ The available browser's desktop viewport was enlarged for the captures. The PNG 
 
 Activity is the fifth image because it shows real outcomes and recovery records. Engine diagnostics are on Dashboard, Settings and Tools; the captures do not imply a combined Activity/Diagnostics screen.
 
-The matching [WordPress.org screenshots](../../wordpress-org-assets/README.md) are exact copies in this order. This repository includes only the five current numbered captures.
+These five PNGs are the single tracked screenshot source. Run `python3 tools/export-wordpress-assets.py` from the repository root to generate byte-identical `screenshot-1.png` through `screenshot-5.png` under ignored `dist/wordpress-org-assets/`. See [the directory asset handoff](../../wordpress-org-assets/README.md).
 
 ## Recreate manually
 
@@ -26,4 +26,4 @@ The matching [WordPress.org screenshots](../../wordpress-org-assets/README.md) a
 4. Open Product Data → ProductClock with a saved combined schedule. Ensure the checkbox, both dates, timezone, status and next action are visible.
 5. Capture Dashboard, Schedules with all states, Settings and Activity. Use Newest first on Activity to make recent outcomes easy to find.
 6. Crop irrelevant context and identifiers without removing meaningful controls. Preserve original pixels and readable text; do not stretch or edit the interface.
-7. Save the five numbered files, copy them to `wordpress-org-assets/screenshot-1.png` through `screenshot-5.png`, and verify matching captions and privacy before publication.
+7. Save the five numbered files, run `python3 tools/export-wordpress-assets.py` from the repository root, and verify the generated screenshot copies, matching captions and privacy before publication.

@@ -22,3 +22,5 @@ To reproduce with Node.js, Sharp and Arial installed, run `node tools/render-bra
 Upload the social preview manually through **GitHub Repository → Settings → Social Preview → Edit → Upload an image** after publication is authorized. See [GitHub's official instructions](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview). The opaque PNG is under 1 MB.
 
 Keep all presentation artwork out of the runtime `assets/` folder and ZIP. [WordPress.org handoff](../../wordpress-org-assets/README.md).
+
+After rendering icons/banners, run `python3 tools/export-wordpress-assets.py` from the repository root to assemble them with the canonical screenshots in ignored `dist/wordpress-org-assets/`. Do not commit redundant screenshot copies.

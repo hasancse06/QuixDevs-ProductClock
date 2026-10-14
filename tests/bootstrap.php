@@ -16,6 +16,8 @@ tests_add_filter( 'muplugins_loaded', static function () {
 } );
 require $tests . '/includes/bootstrap.php';
 WC_Install::create_tables();
+// Refresh cached WP_Role objects after WooCommerce grants capabilities on a fresh install.
 WC_Install::create_roles();
+wp_roles()->for_site();
 require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 require_once ABSPATH . 'wp-content/plugins/woocommerce/includes/admin/meta-boxes/class-wc-meta-box-product-data.php';

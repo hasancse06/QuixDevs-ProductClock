@@ -1,0 +1,119 @@
+name: Prepare draft release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag, e.g. v1.0.0 (must match plugin version)
+        required: true
+        type: string
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: read
+concurrency:
+  group: productclock-release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      commit: ${{ steps.version.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate existing tag and source versions
+        id: version
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          from pathlib import Path
+          sys.path.insert(0, 'tools')
+          from release_lib import versions
+          versions(Path('.'), os.environ['RELEASE_TAG'])
+          PY
+          tag_commit="$(git rev-parse --verify "refs/tags/$RELEASE_TAG^{commit}")"
+          test "$tag_commit" = "$(git rev-parse HEAD)"
+          printf 'tag=%s\ncommit=%s\n' "$RELEASE_TAG" "$tag_commit" >> "$GITHUB_OUTPUT"
+      - name: Install pinned official secret scanner
+        run: bash tools/install-gitleaks.sh "$RUNNER_TEMP/qpc-gitleaks"
+      - name: Scan full Git history and checked-out files
+        run: |
+          "$RUNNER_TEMP/qpc-gitleaks/gitleaks" git --log-opts="--all" --redact --no-banner .
+          "$RUNNER_TEMP/qpc-gitleaks/gitleaks" dir --redact --no-banner .
+      - name: Build and verify runtime package
+        env:
+          RELEASE_TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          python3 tools/build-release.py --tag "$RELEASE_TAG"
+          python3 tools/verify-release.py --tag "$RELEASE_TAG"
+          unzip -t dist/quixdevs-productclock.zip
+          (cd dist && sha256sum --check quixdevs-productclock.zip.sha256)
+          mkdir "$RUNNER_TEMP/qpc-runtime"
+          unzip -q dist/quixdevs-productclock.zip -d "$RUNNER_TEMP/qpc-runtime"
+          "$RUNNER_TEMP/qpc-gitleaks/gitleaks" dir --redact --no-banner "$RUNNER_TEMP/qpc-runtime"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: productclock-release-${{ steps.version.outputs.tag }}
+          path: |
+            dist/quixdevs-productclock.zip
+            dist/quixdevs-productclock.zip.sha256
+            dist/release-manifest.json
+          if-no-files-found: error
+          retention-days: 14
+  ci:
+    needs: package
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ needs.package.outputs.commit }}
+    permissions:
+      contents: read
+  draft:
+    needs: [package, ci]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.package.outputs.commit }}
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: productclock-release-${{ needs.package.outputs.tag }}
+          path: dist
+      - name: Verify artifact checksum and prepare notes
+        run: |
+          (cd dist && sha256sum --check quixdevs-productclock.zip.sha256)
+          python3 - <<'PY'
+          from pathlib import Path
+          text = Path('docs/github-release-notes.md').read_text()
+          sections = text.split('\n---\n')
+          if len(sections) != 3:
+              raise SystemExit('Release notes must contain exactly two separator lines.')
+          notes = sections[1].strip() + '\n\nSHA-256:\n```text\n'
+          notes += Path('dist/quixdevs-productclock.zip.sha256').read_text() + '```\n'
+          Path('dist/release-notes.md').write_text(notes)
+          PY
+      - name: Create draft only; never create tags or publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ needs.package.outputs.tag }}
+          EXPECTED_COMMIT: ${{ needs.package.outputs.commit }}
+        run: |
+          remote_commit="$(gh api "repos/$GH_REPO/commits/refs%2Ftags%2F$RELEASE_TAG" --jq .sha)"
+          test "$remote_commit" = "$EXPECTED_COMMIT"
+          gh release create "$RELEASE_TAG" \
+            --verify-tag --draft \
+            --title "QuixDevs ProductClock $RELEASE_TAG – WooCommerce Product Scheduler" \
+            --notes-file dist/release-notes.md \
+            dist/quixdevs-productclock.zip \
+            dist/quixdevs-productclock.zip.sha256 \
+            dist/release-manifest.json

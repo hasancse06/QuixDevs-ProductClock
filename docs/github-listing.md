@@ -40,7 +40,7 @@ All thirteen suggestions use lowercase letters and hyphens, are below GitHub's 5
 - Short release name where needed: **QuixDevs ProductClock v1.0.0**
 - Installable asset: `quixdevs-productclock.zip`
 
-Use [the prepared release notes](github-release-notes.md) after completing [the publishing checklist](github-publishing-checklist.md). Add a verified Releases URL only after the repository owner and release exist.
+Use [the prepared release notes](github-release-notes.md) and [draft-release workflow](release-distribution.md#draft-release-workflow) after completing [the publishing checklist](github-publishing-checklist.md). Add a verified Releases URL only after the repository owner and release exist.
 
 ## Short social introduction
 
