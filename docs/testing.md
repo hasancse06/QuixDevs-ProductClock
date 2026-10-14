@@ -81,3 +81,20 @@ MariaDB, persistent object-cache configurations, database proxies/reconnect beha
 Run `python3 -m unittest discover -s tests/release -v` without WordPress or a database. These tests exercise deterministic ZIP output, developer-file exclusions, missing runtime classes/assets, dependency/tag mismatches, symlinks, ZIP tampering/traversal and generated WordPress.org assets. They run alongside the existing CI suite.
 
 The release workflow reuses this CI workflow at the exact validated tag commit, including the PHP matrix and runtime-enabled Plugin Check. It scans Git history, current source and the extracted runtime package with pinned Gitleaks before preparing a draft. See [release distribution](release-distribution.md) for actual local results and workflow limits.
+
+## WordPress 7.1 Plugin Check verification
+
+GitHub release run [38608488827](https://github.com/hasancse06/QuixDevs-ProductClock/actions/runs/38608488827) checked the extracted runtime ZIP and failed only `outdated_tested_upto_header`: `Tested up to: 6.8 < 7.1`. Its PHP 7.4/8.2/8.4 integration jobs and standards/package jobs passed. The draft job was correctly skipped. The fixed commit has not run remotely yet.
+
+Before changing the header, the existing suite was run locally on **PHP 8.4.13 / MySQL 8.0.46** with both additional combinations:
+
+| WordPress | WooCommerce | Integration result |
+| --- | --- | --- |
+| 7.1.3 | 10.0.4 | 41 tests, 78 assertions, passed |
+| 7.1.3 | 11.2.1 | 41 tests, 78 assertions, passed |
+
+Official version/plugin APIs confirmed WordPress 7.1.3, WooCommerce 11.2.1 and Plugin Check 2.1.0, matching the action's current dependency resolution. The fixed ZIP installed and activated in a separate disposable WordPress 7.1.3 / WooCommerce 11.2.1 store. Real queue publication/expiration, activity, price retention, native dashboard and Product Data controls passed smoke checks.
+
+The `Tested up to` header is now **7.1**; minimum requirements and plugin version remain unchanged. Runtime-enabled Plugin Check, including experimental checks, passed against the absolute installed runtime-package path. Its live `api.wordpress.org` version lookup was enabled. The earlier isolated setup blocked external HTTP, which prevented this specific current-version lookup; the new reproduction permits the official API and reproduced the exact error before the fix.
+
+The unmodified official action result processor returned **1** for the original finding and **0** for the fixed clean results. Packaging tests, PHPCS, syntax/integrity checks and workflow validation also passed. No check was excluded or suppressed. The workflows were already correct and were left unchanged. This is evidence for the combinations above, not every combination of newer WordPress, WooCommerce, PHP or extensions. [Release/tag rerun instructions](release-distribution.md#rerunning-after-the-plugin-check-fix).

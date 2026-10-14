@@ -1,7 +1,7 @@
 === QuixDevs ProductClock – Product Scheduler for WooCommerce ===
 Tags: woocommerce, product scheduler, scheduled publishing, product expiration, automation
 Requires at least: 6.8
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: woocommerce
 Stable tag: 1.0.0
@@ -34,7 +34,7 @@ ProductClock does not schedule discounts, manage subscriptions or enforce an ord
 
 Requires WordPress 6.8+, active WooCommerce 10.0+, PHP 7.4+, and MySQL/MariaDB advisory locks with a stable writer connection.
 
-Verified locally: WordPress 6.8.3, WooCommerce 10.0.4, PHP 8.4.13, MySQL 8.0.46; 41 tests, 78 assertions, PHP syntax, PHPCS, runtime-enabled Plugin Check and ZIP upload/activation passed. Broader compatibility, large-store stress tests and GitHub CI execution remain unverified. Minimum versions are intended API baselines, not individually tested environments.
+Verified locally: WordPress 6.8.3, WooCommerce 10.0.4, PHP 8.4.13, MySQL 8.0.46; 41 tests, 78 assertions, PHP syntax, PHPCS, runtime-enabled Plugin Check and ZIP upload/activation passed. Also verified locally with WordPress 7.1.3 and WooCommerce 11.2.1 on PHP 8.4.13. Broader compatibility and large-store stress tests remain unverified. Minimum versions are intended API baselines, not individually tested environments.
 
 = Scheduling limits =
 

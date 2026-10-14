@@ -50,8 +50,8 @@ There are **no production Composer package dependencies** in the current manifes
 | Canonical root | `quixdevs-productclock/` |
 | Plugin version | 1.0.0 |
 | Files | **31** |
-| ZIP size | **44,105 bytes** (about 43.1 KiB) |
-| SHA-256 | `9d9f6186bae47ff48cff1fc5c3e9f00401bc9cf0b7ca3dac9edf8cf4cc8c5785` |
+| ZIP size | **44,122 bytes** (about 43.1 KiB) |
+| SHA-256 | `d9cd668b39a2dfc2c57903499703c3cf235b5b68155eb3962ed888ac4c18504d` |
 
 These values describe this source revision. Rebuild and record new values after any distributable file changes. Repeated builds of the same production files were byte-identical. The manifest and checksum are integrity aids; they are not signed provenance or a guarantee of security.
 
@@ -70,7 +70,7 @@ Local environment: **PHP 8.4.13, WordPress 6.8.3, WooCommerce 10.0.4, MySQL 8.0.
 
 A cold test run exposed stale cached WordPress role objects after WooCommerce installed its capabilities. The test bootstrap now refreshes those objects after role creation. Existing integration tests and assertions are retained; no runtime permissions or scheduling behavior were changed.
 
-The updated GitHub workflow has **not run remotely**. Hosted draft creation, GitHub token policies and the remote PHP 7.4/8.2/8.4 matrix remain unverified in this task. Current-release combinations beyond the stated local baseline, large-store stress, other database configurations and browser/accessibility combinations remain subject to [the testing limits](testing.md). The package smoke check was performed through WP-CLI/native hooks, not a new browser upload session.
+The initial GitHub release run passed package preparation, standards and the PHP 7.4/8.2/8.4 matrix, but failed the readme current-version check and correctly skipped draft creation. The compatibility-header fix has not run remotely. Hosted draft creation remains unverified. Current-release combinations beyond the stated local baseline, large-store stress, other database configurations and browser/accessibility combinations remain subject to [the testing limits](testing.md). The package smoke check was performed through WP-CLI/native hooks, not a new browser upload session.
 
 ## Draft-release workflow
 
@@ -115,3 +115,29 @@ python3 tools/export-wordpress-assets.py
 ```
 
 This generates exactly nine PNGs under ignored `dist/wordpress-org-assets/`: the four unique tracked icons/banners plus `screenshot-1.png` through `screenshot-5.png`, copied byte-for-byte from the canonical captures. README images and readme.txt captions retain the same order. Copy those generated PNGs to the top-level SVN `assets/` directory only when authorized. [Asset handoff](../wordpress-org-assets/README.md).
+
+## Rerunning after the Plugin Check fix
+
+The failed release run [38608488827](https://github.com/hasancse06/QuixDevs-ProductClock/actions/runs/38608488827) used commit `ba59d1f23d83a9b9c3eb7e96298e62c190ee6e7b`, also targeted by the existing `v1.0.0` tag. Its single Plugin Check finding was `readme.txt: outdated_tested_upto_header`, specifically `Tested up to: 6.8 < 7.1`. The Node.js deprecation warning and Ubuntu runner migration notice were not the failure.
+
+The workflow already extracts the runtime-only ZIP into `.release/quixdevs-productclock` and passes that directory to Plugin Check; the full repository is not its target. Current WordPress is used by the action and its stable-version lookup made the old compatibility declaration fail. After real WordPress 7.1.3 compatibility tests, the metadata was updated to `Tested up to: 7.1`. No runtime change, plugin version bump, tag change or check suppression was made. See [test evidence](testing.md#wordpress-71-plugin-check-verification).
+
+Authenticated GitHub CLI access was unavailable locally. The job-log API returned HTTP 403; the exact failure and all other annotations were obtained from the public GitHub Check Runs API. The runtime package reproduced the same single error locally with the live stable-version API enabled. The official action result processor failed the original output (exit 1) and accepted the corrected output (exit 0). The existing `draft` job still requires success from both `package` and the complete reused `ci` workflow.
+
+**Do not just select Re-run failed jobs on the old run.** That reuses the old commit. Also, dispatching release.yml from master with `tag=v1.0.0` still checks out the existing tag's old commit; selecting a different workflow branch does not replace the release source.
+
+1. Review, commit and push the fix through the normal authorized process. None of those actions were performed locally.
+2. Validate the fixed branch through the regular CI push run, or manually run **ProductClock checks** on that branch. With authenticated GitHub CLI, for example:
+
+   ```sh
+   gh workflow run ci.yml --repo hasancse06/QuixDevs-ProductClock --ref master
+   ```
+
+3. A release must use an approved tag that actually points to the fixed commit. For the existing, unpublished v1.0.0 release, moving that tag requires a separate explicit maintainer decision. Alternatively, approve a new release version/tag and update its version declarations in that separately authorized change. **This fix does neither.**
+4. Once the chosen matching tag points to the approved fixed commit and the workflow is available on master, dispatch **Prepare draft release** with that tag, or let an approved tag push trigger it. For example, use the following only after the v1.0.0 tag decision has been made and its target has been verified:
+
+   ```sh
+   gh workflow run release.yml --repo hasancse06/QuixDevs-ProductClock --ref master -f tag=v1.0.0
+   ```
+
+5. Inspect all check results and the resulting draft. Publication remains manual. Do not remove the tag/commit guard or CI dependency to bypass the failed old revision.

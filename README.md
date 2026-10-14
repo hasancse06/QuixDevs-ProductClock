@@ -133,14 +133,14 @@ Execution happens **at or after** the scheduled time. Traffic-driven **WP-Cron d
 
 | Component | Declared minimum | Locally verified |
 | --- | --- | --- |
-| WordPress | 6.8 | 6.8.3 |
-| WooCommerce | 10.0, installed and active | 10.0.4 |
+| WordPress | 6.8 | 6.8.3 and 7.1.3 |
+| WooCommerce | 10.0, installed and active | 10.0.4 and 11.2.1 |
 | PHP | 7.4 | 8.4.13 |
 | Database | MySQL/MariaDB with connection-scoped advisory locks and a stable writer connection | MySQL 8.0.46 |
 
-Minimums describe the intended API baseline; they are not proof that every newer or minimum-version combination has been tested.
+Minimums describe the intended API baseline; they are not proof that every newer or minimum-version combination has been tested. See [the testing guide](docs/testing.md#wordpress-71-plugin-check-verification) for the exact verified combinations.
 
-**Recorded local verification:** 41 integration tests, 78 assertions; PHP syntax and PHPCS passed; runtime-enabled Plugin Check passed; WordPress ZIP upload and activation verified. [Evidence and test matrix](docs/testing.md). GitHub CI execution, broader compatibility and large-store stress tests remain unverified.
+**Recorded local verification:** 41 integration tests, 78 assertions; PHP syntax and PHPCS passed; runtime-enabled Plugin Check passed; WordPress ZIP upload and activation verified. [Evidence and test matrix](docs/testing.md). The existing GitHub PHP 7.4/8.2/8.4 matrix passed in the release run; the fixed commit has not yet run remotely. Broader compatibility and large-store stress tests remain unverified.
 
 ## Compatibility and limitations
 
