@@ -7,26 +7,34 @@ Schedule. Publish. Expire.
 
 A free, open-source **WooCommerce product scheduler** for product launches, seasonal catalogs and limited availability windows. Automatically publish WooCommerce products on a chosen date, then return them to draft when the window ends—all from the classic product editor.
 
-- Choose **Publish Only**, **Expire Only**, or **Publish & Expire**.
-- Keep dates clear with WordPress timezone support and UTC storage.
-- Track upcoming actions and activity in a native WooCommerce dashboard.
-- Run locally on your store, without an external account or subscription.
+## 📦 Download & Install
 
-## Download & Install
+**[⬇️ Download Latest ProductClock Plugin](https://github.com/hasancse06/QuixDevs-ProductClock/releases/latest/download/quixdevs-productclock.zip)**
 
-Download **`quixdevs-productclock.zip`** from **[GitHub → Releases](https://github.com/hasancse06/QuixDevs-ProductClock/releases) → choose a published version → Assets**.
+**Release status:** v1.0.0 is currently a draft and is not publicly available. The latest-download link above becomes active once the release is published.
 
-With WooCommerce installed and active, open **WordPress Admin → Plugins → Add Plugin → Upload Plugin**, choose that ZIP, select **Install Now**, then **Activate Plugin**. No Composer or command-line tools are needed on your store.
+The download is the lightweight, installable WordPress plugin. **No Composer or command-line tools are required. WooCommerce must already be installed and active.**
 
-**Do not install GitHub’s automatic “Source code (zip)” download.** It is a development checkout containing tests, documentation and other repository files. Use the separately attached `quixdevs-productclock.zip` asset. If Releases is empty, a public installable package is not available yet; maintainers can [build and verify it locally](docs/release-distribution.md).
+1. After publication, download **`quixdevs-productclock.zip`** using the link above or from the **[GitHub Releases page](https://github.com/hasancse06/QuixDevs-ProductClock/releases) → Assets** for your chosen published version.
+2. In **WordPress Admin → Plugins → Add Plugin → Upload Plugin**, choose that ZIP and select **Install Now**, then **Activate Plugin**.
+3. Open **WooCommerce → ProductClock** and check Scheduler Health.
 
-**[Install the release ZIP](#installation)** · [Quick start](#quick-start) · [Requirements](#requirements) · [Developer docs](#developer-documentation)
+> **IMPORTANT:** Download `quixdevs-productclock.zip` from **GitHub Releases → Assets**. Do not use **Code → Download ZIP** or the automatically generated **Source code ZIP**: those contain the development repository, including tests, documentation and other development files.
+
+For a local development build, maintainers can run `python3 tools/build-release.py` from this directory. It creates `dist/quixdevs-productclock.zip`, a checksum and a package manifest without requiring Composer. This is a maintainer step, not a store-owner installation requirement. See [build and verification instructions](docs/release-distribution.md) and the [publishing checklist](docs/github-publishing-checklist.md).
+
+[Quick start](#quick-start) · [Requirements](#requirements) · [Developer docs](#developer-documentation)
 
 ![WooCommerce Product Data panel with ProductClock enabled, Publish & Expire mode, both dates, Asia/Dhaka timezone and pending publication status](docs/screenshots/01-product-scheduling.png)
 
 *Set a product’s publication and expiration window in Product Data → ProductClock. Genuine demo-store capture.*
 
 ## Why ProductClock?
+
+- Choose **Publish Only**, **Expire Only**, or **Publish & Expire**.
+- Keep dates clear with WordPress timezone support and UTC storage.
+- Track upcoming actions and activity in a native WooCommerce dashboard.
+- Run locally on your store, without an external account or subscription.
 
 Launching products manually means being available at launch time. Removing them afterward is another task to remember. ProductClock lets you schedule WooCommerce products ahead of time, coordinate releases and close availability windows automatically.
 
@@ -74,20 +82,6 @@ The scheduling interface is shown above. The remaining four screenshots are disp
 ![ProductClock activity table with genuine product_published and product_expired success records, reconciliation recovery and a manual override](docs/screenshots/05-activity.png)
 
 *Compare scheduled and actual execution times. Scheduler diagnostics and recovery controls also appear in Dashboard and Tools.*
-
-## Installation
-
-**WooCommerce must already be installed and active. No Composer or command-line tools are needed on your store.**
-
-Open [GitHub Releases](https://github.com/hasancse06/QuixDevs-ProductClock/releases), choose a published version, and download **`quixdevs-productclock.zip`** under **Assets**. Use the attached installable package rather than GitHub’s automatic Source code ZIP.
-
-If no release is listed yet, an installable public ZIP has not been published. Maintainers can create it with the local build command below and follow the [publishing checklist](docs/github-publishing-checklist.md).
-
-1. In WordPress Admin, open **Plugins → Add Plugin → Upload Plugin**.
-2. Choose `quixdevs-productclock.zip`, select **Install Now**, then **Activate Plugin**.
-3. Open **WooCommerce → ProductClock** and check Scheduler Health.
-
-For a local development build, run `python3 tools/build-release.py` from this directory. It creates `dist/quixdevs-productclock.zip`, a checksum and a package manifest without requiring Composer. This is a maintainer step, not a store-owner installation requirement.
 
 ## Quick start
 
@@ -140,7 +134,9 @@ Execution happens **at or after** the scheduled time. Traffic-driven **WP-Cron d
 
 Minimums describe the intended API baseline; they are not proof that every newer or minimum-version combination has been tested. See [the testing guide](docs/testing.md#wordpress-71-plugin-check-verification) for the exact verified combinations.
 
-**Recorded local verification:** 41 integration tests, 78 assertions; PHP syntax and PHPCS passed; runtime-enabled Plugin Check passed; WordPress ZIP upload and activation verified. [Evidence and test matrix](docs/testing.md). The existing GitHub PHP 7.4/8.2/8.4 matrix passed in the release run; the fixed commit has not yet run remotely. Broader compatibility and large-store stress tests remain unverified.
+**Recorded local verification:** WordPress **7.1.3** was tested with **WooCommerce 10.0.4** and **WooCommerce 11.2.1**, using **PHP 8.4.13**. Verification passed: **41 integration tests / 78 assertions**, **13 packaging tests**, PHPCS, PHP syntax, runtime-enabled Plugin Check, and ZIP installation, activation and scheduling smoke tests. [Evidence and test matrix](docs/testing.md).
+
+**GitHub Actions:** The latest ProductClock checks completed successfully on commit **[58223af](https://github.com/hasancse06/QuixDevs-ProductClock/commit/58223af)**. The [successful release preparation run](https://github.com/hasancse06/QuixDevs-ProductClock/actions/runs/38612391150) includes package verification, coding standards, Plugin Check and integration tests on **PHP 7.4, 8.2 and 8.4 with WordPress 6.8.3 and WooCommerce 10.0.4**. These results cover the stated configurations only; broader compatibility and large-store stress tests remain unverified.
 
 ## Compatibility and limitations
 
