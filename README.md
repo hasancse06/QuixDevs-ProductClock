@@ -213,3 +213,12 @@ QuixDevs ProductClock is developed and maintained under the **QuixDevs** brand a
 **Copyright © 2026 QuixDevs.**
 
 Licensed under [GPL-2.0-or-later](LICENSE). QuixDevs ProductClock is an independent plugin and is not officially endorsed by WooCommerce.
+
+## ⭐ Support This Project
+
+If you find this useful:
+- ⭐ Star the repository on GitHub
+- 🔗 Share it with fellow Ionic, WordPress, WooCommerce, or mobile app developers
+- 💡 Contribute with feedback or pull requests
+
+> Together, we make WordPress more mobile-friendly and developer-first 🚀
